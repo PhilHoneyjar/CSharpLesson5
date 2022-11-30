@@ -64,9 +64,9 @@ void PrintMaxMinusMin(double a, double b)
 }
 
 
-int message1 = GetintFromConsole("Enter array's length = ");
-int message2 = GetintFromConsole("Enter array's min value = ");
-int message3 = GetintFromConsole("Enter array's max value = ");
+int message1 = GetintFromConsole("Input array length = ");
+int message2 = GetintFromConsole("Input array min value = ");
+int message3 = GetintFromConsole("Input array max value = ");
 
 
 double[] Arr = FillArray(message1, message2, message3);
