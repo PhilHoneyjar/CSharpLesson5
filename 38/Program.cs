@@ -1,37 +1,77 @@
 ﻿// Задайте массив вещественных чисел.
-// Найдите разницу между максимальным и минимальным элементов массива.
+// Найдите разницу между максимальным и минимальным элементами массива.
 
-int size = 5;
-int[] array = GetFillArray(size);
-
-
-int[] GetFillArray(int size)
+int GetintFromConsole(string message)
 {
-    int[] array = new int[size];
-    for (int i = 0; i < array.Length; i++)
-
-        array[i] = new Random().Next(-100, 101);
-    return array;
+    System.Console.Write(message);
+    return System.Convert.ToInt32(System.Console.ReadLine());
 }
 
 
-int MaxAndMinDifference(int[] array)
+double[] FillArray(int L, int Min, int Max)
 {
-    int MinNumber = 0;
-    int MaxNumber = 0;
-    int result = 0;
-
-    for (int i = 0; i < array.Length; i++)
-    
-        if (array[i] < array[MinNumber])
-            MinNumber = i;
-        else if (array[i] > array[MaxNumber])
-            MaxNumber = i;
-    
-        result = array[MaxNumber] - array[MinNumber];
+    double[] result = new double[L];
+    for (int i = 0; i < L; i++)
+    {
+        result[i] = Math.Round(new Random().NextDouble() * (Max - Min) + Min, 2);
+    }
     return result;
 }
 
 
-System.Console.WriteLine(String.Join(", ", array));
-System.Console.WriteLine(MaxAndMinDifference(array));
+void PrintArray(double[] Array)
+{
+    for (int i = 0; i < Array.Length; i++)
+    {
+        if (i == Array.Length - 1)
+            System.Console.Write($"{Array[i]} ");
+        else
+            System.Console.Write($"{Array[i]}, ");
+    }
+}
+
+
+double FindMin(double Max, double[] Array)
+{
+    double min = Max;
+
+    for (int i = 0; i < Array.Length; i++)
+    {
+        if (Array[i] < min)
+            min = Array[i];
+    }
+    return min;
+}
+
+
+double FindMax(double Min, double[] Array)
+{
+    double max = Min;
+
+    for (int i = 0; i < Array.Length; i++)
+    {
+        if (Array[i] > max)
+            max = Array[i];
+    }
+    return max;
+}
+
+
+void PrintMaxMinusMin(double a, double b)
+{
+    double Minus = a - b;
+    System.Console.Write(Minus);
+}
+
+
+int message1 = GetintFromConsole("Enter array's length = ");
+int message2 = GetintFromConsole("Enter array's min value = ");
+int message3 = GetintFromConsole("Enter array's max value = ");
+
+
+double[] Arr = FillArray(message1, message2, message3);
+PrintArray(Arr);
+double Res1 = FindMin(message3, Arr);
+double Res2 = FindMax(message2, Arr);
+System.Console.WriteLine();
+PrintMaxMinusMin(Res2,Res1);
